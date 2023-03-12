@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, FlatList } from "react-native";
 import {
   FontAwesome,
   Entypo,
@@ -8,6 +8,22 @@ import {
   Ionicons,
 } from '@expo/vector-icons'; 
 import car from "../assets/images/oct.png"
+import menuOptions from '../assets/menuOptions';
+
+const MenuOption = ({ item }) => {
+  return (
+    <View style={styles.optionRow}>
+      <MaterialCommunityIcons name={item.iconName} size={26} color="gray" />
+      <Text style={styles.optionText}>{item.name}</Text>
+      <MaterialIcons
+        name="keyboard-arrow-right"
+        size={24}
+        color="gray"
+        style={{ marginLeft: 'auto' }}
+      />
+    </View>
+  );
+};
 
 
 export default function Page() {
@@ -31,16 +47,11 @@ export default function Page() {
         <Ionicons name="car-sport-sharp" size={26} color="gray" />
       </View>
 
-      <View style={styles.optionRow}>
-        <MaterialCommunityIcons name="car" size={26} color="gray" />
-        <Text style={styles.optionText}>Controls</Text>
-        <MaterialIcons
-          name="keyboard-arrow-right"
-          size={24}
-          color="gray"
-          style={{ marginLeft: 'auto' }}
-        />
-      </View>
+      <FlatList
+        data={menuOptions}
+        showsVerticalScrollIndicator={false}
+        renderItem={MenuOption}
+      />
 
     </View>
   );
